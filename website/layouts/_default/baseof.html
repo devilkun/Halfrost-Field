@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+{{ partial "head.html" . }}
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+    {{ partial "header.html" . }}
+
+    {{ block "main" . }}
+    {{ end }}
+
+    {{ partial "footer.html" . }}
+
+  </div>
+</body>
+
+<link rel="stylesheet" href={{ "lib/font-awesome/css/all.min.css" | relURL }}>
+<script src={{ "lib/jquery/jquery.min.js" | relURL }}></script>
+<script src={{ "js/main.js" | relURL }}></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  var serviceWorkerUri = '/js/serviceworker-v1.js';
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register(serviceWorkerUri).then(function() {
+          if (navigator.serviceWorker.controller) {
+            console.log('Assets cached by the controlling service worker.');
+          } else {
+            console.log('Please reload this page to allow the service worker to handle network operations.');
+          }
+      }).catch(function(error) {
+          console.log('ERROR: ' + error);
+        });
+  } else {
+      console.log('Service workers are not supported in the current browser.');
+  }
+</script>
+</html>
